@@ -1,0 +1,3 @@
+-- Hollow Knot
+-- When part is touched, part turns into kill block
+-- This 
