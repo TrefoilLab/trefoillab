@@ -35,6 +35,31 @@ function generateTrefoilCalculus(points, radius)
 	return pointsList
 end
 
+function generateLinkCalculus(points, radius)
+	local pointsList = {}
+	local step = (2 * math.pi) / points
+    -- First circle
+	for i = 0, points - 1 do
+		local t = i * step
+		local x = (2 - math.cos(t)) * math.cos(t)
+		local y = (2 - math.cos(t)) * math.sin(t)
+		local z = math.sin(t)
+
+		table.insert(pointsList, Vector3.new(x * radius, y * radius, z * radius))
+	end
+	-- The other, linked, circle
+	for i = 0, points - 1 do
+		local t = i * step
+		local x = (2 + math.cos(t)) * math.cos(t)
+		local y = (2 + math.cos(t)) * math.sin(t)
+		local z = math.cos(t)
+
+		table.insert(pointsList, Vector3.new(x * radius, y * radius, z * radius))
+	end
+
+	return pointsList
+end
+
 
 -- Changes block color when touched
 local function changeColor(part)
